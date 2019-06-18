@@ -1,15 +1,148 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Exam2019</title>
+    <title>App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+    <style>
+      footer {
+        position: fixed;
+        height: 100px;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
   </head>
 
   <body>
-    <%= yield %>
+      <% if flash[:error] %>
+        <div class="Alert-bottom alert alert-danger fade in" role="alert"><a class="close" data-dismiss="alert" aria-label="close">x</a> <%= flash[:error] %></div>
+      <% elsif flash[:notice] %>
+        <div class="Alert-bottom alert alert-success fade in" role="alert"><a class="close" data-dismiss="alert" aria-label="close">x</a><%= flash[:notice] %></div>
+      <%end%>
+
+
+
+      <div class="row justify-content-center">
+        <div class="col-12 mb-3">
+          <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+
+              </button>
+              <a class="navbar-brand" href="http://localhost:3000">Z-Mobile</a>
+
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+
+
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 navbar-right">
+                    <% if current_model%>
+                    <li>
+                      <a class="nav-link" href='http://localhost:3000/shopping_carts'>Shopping Cart</a>
+                    </li>
+                    <li class="nav-item active">
+
+                    <p class="card-text" style="padding: 15px"><%=current_model.email%></p>
+                    </li>
+                    <li class="nav-item">
+                    <p class="nav-link " style="padding-top: 15px"><%= link_to "Log out", destroy_model_session_path, method: :delete, class: "text-dark"%></p>
+                    </li>
+                    
+                  <%else%>
+                      <li class="nav-item active">
+                        <a class="nav-link" href='http://localhost:3000/shopping_carts'>Shopping Cart</a>
+                      
+                    </li>
+                    <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:3000/models/sign_in" style="padding: 15px">Log in<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href='http://localhost:3000/models/sign_up'>Sign up</a>
+                    </li>
+
+
+                  <%end%>
+
+                </ul>
+              </div>
+            </nav>
+        </div>
+      </div>
+
+
+
+                 
+      <div class="row mb-3">
+      
+
+          <div class="col-3">
+          </div>  
+          <div class="col-6">
+              
+          </div>
+          <div class="col-3">
+          </div>
+
+          <div class="col-3">
+          </div>  
+          <div class="col-6">
+            <div class="btn-group btn-block" role="group" aria-label="Basic example">
+
+                <a style='width:33.3%; color: #000;' class="btn btn-primary" href='http://localhost:3000/products'>Handset</a>
+                <a style='width:33.3%; color: #000;' class="btn btn-primary" href='http://localhost:3000/products'>Prepay Options</a>
+                <a style='width:33.3%; color: #000;' class="btn btn-primary" href='http://localhost:3000/products'>Subscription</a>
+
+
+
+
+
+            </div>
+          </div>
+          <div class="col-3 ">
+          
+          </div>
+
+      </div>
+                
+                
+
+      
+
+    <div class="row mb-3">
+      <div class= "col-2">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Select Brand:</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Mattel</a>
+          <a class="dropdown-item" href="#">FaberCastle</a>
+          <a class="dropdown-item" href="#">Hotwheels</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+      </div>
+      <div class="col">
+
+        <%= yield %>
+      </div>
+
+    </div>
+    
   </body>
+  <footer class="fixed-bottom bg-secondary">
+    <h4>Footer info</h4>
+    <span style="font-size: 14px; color:#FFF; margin-left: 10px">Call center: +569111111111</span></br>
+    <span style="font-size: 14px; color:#FFF; margin-left: 10px">Company: Very important company in the role of selling products</span></br>
+    <span style="font-size: 14px; color:#FFF; margin-left: 10px">HQ: Monseñor alvaro portillo 999</span>
+  </footer>
 </html>
